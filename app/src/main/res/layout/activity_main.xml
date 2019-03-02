@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/content_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/nav_layout">
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/nav_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="hello world"/>
-</LinearLayout>
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btn_nav_main"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:background="@mipmap/nav_main_normal"
+            android:layout_marginLeft="10dp"/>
+        <Button
+            android:id="@+id/btn_nav_find"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:background="@mipmap/nav_find_normal"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:id="@+id/btn_nav_me"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/nav_me_normal"/>
+    </RelativeLayout>
+
+</RelativeLayout>
