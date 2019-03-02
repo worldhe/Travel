@@ -34,12 +34,4 @@ public class SplashActivity extends AppCompatActivity {
         handler.removeCallbacks(runnable);
     }
 
-    //如果处在闪屏页的时候按下了Back键，移除这个handler
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        handler.removeCallbacks(runnable);
-    }
-
-
 }
