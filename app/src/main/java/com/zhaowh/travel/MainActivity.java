@@ -17,12 +17,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnNavMain;  //首页按钮
     private Button btnNavFind;  //发现页按钮
     private Button btnNavMe;    //个人信息查看按钮
+
+    private MainFragment mainFragment = new MainFragment();
+    private FindFragment findFragment = new FindFragment();
+    private MeFragment meFragment = new MeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        replaceFragment(new MainFragment());
+        initFragment();
     }
 
     private void initView(){
@@ -38,15 +43,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_nav_main:
-                replaceFragment(new MainFragment());
+                FragmentTransaction main = getSupportFragmentManager().beginTransaction();
+                main.show(mainFragment);
+                main.hide(findFragment);
+                main.hide(meFragment);
+                main.commit();
                 btnBackground(true, false, false);
                 break;
             case R.id.btn_nav_find:
-                replaceFragment(new FindFragment());
+                FragmentTransaction find = getSupportFragmentManager().beginTransaction();
+                find.hide(mainFragment);
+                find.show(findFragment);
+                find.hide(meFragment);
+                find.commit();
                 btnBackground(false, true, false);
                 break;
             case R.id.btn_nav_me:
-                replaceFragment(new MeFragment());
+                FragmentTransaction me = getSupportFragmentManager().beginTransaction();
+                me.hide(mainFragment);
+                me.hide(findFragment);
+                me.show(meFragment);
+                me.commit();
                 btnBackground(false, false, true);
                 break;
             default:
@@ -54,13 +71,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void replaceFragment(Fragment fragment){
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.content_fragment_layout, fragment);
-        transaction.commit();
-
-        btnBackground(true, false, false);
+    private void initFragment(){
+        FragmentManager addMamager = getSupportFragmentManager();
+        FragmentTransaction addTransaction = addMamager.beginTransaction();
+        addTransaction.add(R.id.content_fragment_layout, mainFragment);
+        addTransaction.add(R.id.content_fragment_layout, findFragment);
+        addTransaction.add(R.id.content_fragment_layout, meFragment);
+        addTransaction.hide(findFragment);
+        addTransaction.hide(meFragment);
+        addTransaction.commit();
+        btnNavMain.setBackgroundResource(R.mipmap.nav_main_click);
     }
 
     private void btnBackground(boolean btnMain, boolean btnFind, boolean btnMe){
