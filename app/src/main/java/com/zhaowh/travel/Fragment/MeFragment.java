@@ -1,5 +1,6 @@
 package com.zhaowh.travel.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zhaowh.travel.LoginActivity;
 import com.zhaowh.travel.R;
 
 import java.util.ArrayList;
@@ -75,6 +77,8 @@ public class MeFragment extends Fragment implements View.OnClickListener, Adapte
             case R.id.ib_login:
                 //登录
                 allToast("登录");
+                Intent loginIntent = new Intent(getContext(), LoginActivity.class);
+                startActivity(loginIntent);
                 break;
             case R.id.tv_coupon:
                 //优惠券
