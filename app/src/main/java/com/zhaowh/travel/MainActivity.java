@@ -1,5 +1,7 @@
 package com.zhaowh.travel;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -99,5 +101,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnNavFind.setBackgroundResource(R.mipmap.nav_find_normal);
             btnNavMe.setBackgroundResource(R.mipmap.nav_me_click);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("系统提示");
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("确定要退出此应用吗？");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", null);
+        builder.create();
+        builder.show();
     }
 }

@@ -1,5 +1,6 @@
 package com.zhaowh.travel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.tv_sign_in:
                 //免费注册
+                Intent signIntent = new Intent(this, SignActivity.class);
+                startActivity(signIntent);
                 break;
             default:
                 break;
